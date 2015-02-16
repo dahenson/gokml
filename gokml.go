@@ -9,6 +9,7 @@ const (
 	DefaultNamespace = "http://www.opengis.net/kml/2.2"
 )
 
+// Kml is the base Kml document
 type Kml struct {
 	XMLName    xml.Name `xml:"kml"`
 	Namespace  string   `xml:"xmlns,attr"`
@@ -17,12 +18,14 @@ type Kml struct {
 	Folders    []Folder
 }
 
+// Style for features
 type Style struct {
 	XMLName xml.Name `xml:"Style"`
 	Id      string   `xml:"id,attr,omitempty"`
 	Icon    IconStyle
 }
 
+// IconStyle
 type IconStyle struct {
 	XMLName xml.Name `xml:"IconStyle"`
 	Scale   string   `xml:"scale,omitempty"`
@@ -30,11 +33,13 @@ type IconStyle struct {
 	Href    string   `xml:"Icon>href,omitempty"`
 }
 
+// ExtendedData for placemarks
 type ExtendedData struct {
 	XMLName xml.Name `xml:"ExtendedData"`
 	Datas   []Data
 }
 
+// Data that goes in ExtendedData
 type Data struct {
 	XMLName xml.Name `xml:"Data"`
 	Name    string   `xml:"name,attr"`
@@ -62,14 +67,11 @@ func (k *Kml) AddPlacemark(p Placemark) {
 	k.Placemarks = append(k.Placemarks, p)
 }
 
-// Kml.Marshal()
+// Marshal() returns a properly indented XML structure
 func (k *Kml) Marshal() ([]byte, error) {
 	return xml.MarshalIndent(k, "", "	")
 }
 
-/*
- * Style
- */
 func NewStyle(id string) Style {
 	s := Style{Id: id}
 	return s
@@ -79,9 +81,6 @@ func (s *Style) AddIconStyle(is IconStyle) {
 	s.Icon = is
 }
 
-/*
- * IconStyle
- */
 func NewIconStyle(scale, heading, href string) IconStyle {
 	is := IconStyle{Scale: scale, Heading: heading, Href: href}
 	return is

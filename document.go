@@ -21,10 +21,6 @@ type Document struct {
 	DocStyle    []Style
 }
 
-/*
- * Document represents the Document structure within a Kml
- */
-
 // NewDocument() creates a new document
 func NewDocument(id, name string) Document {
 	d := Document{Id: id, Name: name}
@@ -36,15 +32,17 @@ func (d *Document) AddPlacemark(p Placemark) {
 	d.Placemarks = append(d.Placemarks, p)
 }
 
+// AddStyle() adds a style to the document
 func (d *Document) AddStyle(s Style) {
 	d.DocStyle = append(d.DocStyle, s)
 }
 
+// AddFolder() adds a folder to the document
 func (d *Document) AddFolder(f Folder) {
 	d.Folders = append(d.Folders, f)
 }
 
-// Document.Marshal()
+// Document.Marshal() returns the marshalled xml structure
 func (d *Document) Marshal() ([]byte, error) {
 	return xml.MarshalIndent(d, "", "	")
 }

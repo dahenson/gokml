@@ -34,3 +34,8 @@ func NewFolder(id, name string) Folder {
 func (f *Folder) AddPlacemark(p Placemark) {
 	f.Placemarks = append(f.Placemarks, p)
 }
+
+// SetVisibility() sets the visibility of the folder
+func (f *Folder) SetVisibility(visibility bool) {
+	f.Visibility = boolToInt(visibility)
+}
