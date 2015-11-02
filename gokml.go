@@ -18,21 +18,6 @@ type Kml struct {
 	Folders    []Folder
 }
 
-// Style for features
-type Style struct {
-	XMLName xml.Name `xml:"Style"`
-	Id      string   `xml:"id,attr,omitempty"`
-	Icon    IconStyle
-}
-
-// IconStyle
-type IconStyle struct {
-	XMLName xml.Name `xml:"IconStyle"`
-	Scale   string   `xml:"scale,omitempty"`
-	Heading string   `xml:"heading,omitempty"`
-	Href    string   `xml:"Icon>href,omitempty"`
-}
-
 // ExtendedData for placemarks
 type ExtendedData struct {
 	XMLName xml.Name `xml:"ExtendedData"`
@@ -68,22 +53,12 @@ func (k *Kml) AddPlacemark(p Placemark) {
 }
 
 // Marshal() returns a properly indented XML structure
-func (k *Kml) Marshal() ([]byte, error) {
+func (k *Kml) MarshalIndent() ([]byte, error) {
 	return xml.MarshalIndent(k, "", "	")
 }
 
-func NewStyle(id string) Style {
-	s := Style{Id: id}
-	return s
-}
-
-func (s *Style) AddIconStyle(is IconStyle) {
-	s.Icon = is
-}
-
-func NewIconStyle(scale, heading, href string) IconStyle {
-	is := IconStyle{Scale: scale, Heading: heading, Href: href}
-	return is
+func (k *Kml) Marshal() ([]byte, error) {
+	return xml.Marshal(k)
 }
 
 // NewExtendedData() creates new extended data
