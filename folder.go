@@ -8,16 +8,17 @@ import (
  * Container type Folder
  */
 type Folder struct {
-	XMLName     xml.Name `xml:"Folder"`
-	Id          string   `xml:"id,attr,omitempty"`
-	Name        string   `xml:"name,omitempty"`
-	Visibility  int      `xml:"visibility,omitempty"`
-	Open        int      `xml:"open,omitempty"`
-	Address     string   `xml:"address,omitempty"`
-	PhoneNumber string   `xml:"phoneNumber,omitempty"`
-	Description string   `xml:"description,omitempty"`
-	Placemarks  []Placemark
-	Folders     []Folder
+	XMLName     xml.Name    `xml:"Folder"`
+	Id          string      `xml:"id,attr,omitempty"`
+	Name        string      `xml:"name,omitempty"`
+	Visibility  int         `xml:"visibility,omitempty"`
+	Open        int         `xml:"open,omitempty"`
+	Address     string      `xml:"address,omitempty"`
+	PhoneNumber string      `xml:"phoneNumber,omitempty"`
+	Description string      `xml:"description,omitempty"`
+	Styles      []Style     `xml:"Style"`
+	Placemarks  []Placemark `xml:"Placemark"`
+	Folders     []Folder    `xml:"Folder"`
 }
 
 /*
