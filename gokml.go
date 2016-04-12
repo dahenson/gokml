@@ -14,14 +14,14 @@ type Kml struct {
 	XMLName    xml.Name `xml:"kml"`
 	Namespace  string   `xml:"xmlns,attr"`
 	Document   Document
-	Placemarks []Placemark
-	Folders    []Folder
+	Placemarks []Placemark `xml:"Placemark"`
+	Folders    []Folder    `xml:"Folder"`
 }
 
 // ExtendedData for placemarks
 type ExtendedData struct {
 	XMLName xml.Name `xml:"ExtendedData"`
-	Datas   []Data
+	Datas   []Data   `xml:"Data"`
 }
 
 // Data that goes in ExtendedData
