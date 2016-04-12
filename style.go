@@ -1,5 +1,7 @@
 package gokml
 
+import "encoding/xml"
+
 const (
 	IconPaddleBase = "http://maps.google.com/mapfiles/kml/paddle/"
 	IconShapesBase = "http://maps.google.com/mapfiles/kml/shapes/"
